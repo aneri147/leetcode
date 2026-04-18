@@ -45,19 +45,19 @@ class Solution:
         # backtrack(0,[],0)
         # return res
 
-        res = []
-        def backtrack(start,path,total):
-            if total == target:
-                res.append(path[:])
-            if total > target:
-                return
-            if total < target:
-                for i in range(start, len(candidates)):
-                    path.append(candidates[i])
-                    backtrack(i,path,total+candidates[i])
-                    path.pop()
-        backtrack(0,[],0)
-        return res
+        # res = []
+        # def backtrack(start,path,total):
+        #     if total == target:
+        #         res.append(path[:])
+        #     if total > target:
+        #         return
+        #     if total < target:
+        #         for i in range(start, len(candidates)):
+        #             path.append(candidates[i])
+        #             backtrack(i,path,total+candidates[i])
+        #             path.pop()
+        # backtrack(0,[],0)
+        # return res
 
         # res = []
         # def backtrack(start, path, total):
@@ -149,16 +149,31 @@ class Solution:
         # backtrack(0, 0, [])
         # return res
 
+        # res = []
+        # def backtrack(start, total, path):
+        #     if total == target:
+        #         res.append(path[:])
+        #     if total < target:
+        #         for i in range(start, len(candidates)):
+        #             path.append(candidates[i])
+        #             backtrack(i, total + candidates[i], path)
+        #             path.pop()
+        #         if total > target:
+        #             return
+        #         backtrack
+        #     return res
+
         res = []
-        def backtrack(start, total, path):
-            if total == target:
+        total = 0
+        def backtrack(start, path, total):
+            if target == total:
                 res.append(path[:])
-            if total < target:
+            elif target < total:
+                return
+            elif target > total:
                 for i in range(start, len(candidates)):
                     path.append(candidates[i])
-                    backtrack(i, total + candidates[i], path)
+                    backtrack(i, path, total + candidates[i])
                     path.pop()
-                if total > target:
-                    return
-                backtrack
-            return res
+        backtrack(0, [], 0)
+        return res
